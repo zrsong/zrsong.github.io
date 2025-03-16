@@ -3,38 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zirui Song 宋子睿 | Personal Website</title>
+    <title>Zirui Song | Personal Website</title>
     
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
-    <!-- Google Analytics Tracking Code -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SNCTQSYCPE"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-SNCTQSYCPE');
-    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            margin-bottom: 20px;
+        }
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .upload-section {
+            margin-top: 20px;
+        }
+    </style>
 </head>
-<body class="container mt-5">
-    <div class="row">
-        <div class="col-md-3">
-            <img src="profile.jpg" class="img-fluid rounded-circle" alt="Profile Picture">
-            <h2>Zirui Song</h2>
-            <p>MPhil Student in Accounting & Finance</p>
-            <ul>
-                <li><a href="#">Perth, WA</a></li>
-                <li><a href="mailto:zirui.song@research.uwa.edu.au">Email</a></li>
-                <li><a href="https://github.com/zrsong" target="_blank">GitHub</a></li>
-            </ul>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Zirui Song</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#research">Research</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#teaching">Teaching</a></li>
+                </ul>
+            </div>
         </div>
-        <div class="col-md-9">
-            <h1>Welcome to my personal website!</h1>
-            <h2>Introduction</h2>
-            <p>Hello! My name is Zirui Song. I am an MPhil student at UWA Business School.</p>
+    </nav>
+
+    <!-- Home Section -->
+    <div class="container" id="home">
+        <div class="row">
+            <div class="col-md-3 text-center">
+                <img src="profile.jpg" class="profile-img" alt="Profile Picture">
+                <h2>Zirui Song</h2>
+                <p>MPhil Student in Accounting & Finance</p>
+                <ul class="list-unstyled">
+                    <li><a href="#">Perth, WA</a></li>
+                    <li><a href="mailto:zirui.song@research.uwa.edu.au">Email</a></li>
+                    <li><a href="https://github.com/zrsong" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+            <div class="col-md-9">
+                <h1>Welcome to my personal website!</h1>
+                <p>Hello! My name is Zirui Song. I am an MPhil student at UWA Business School.</p>
+            </div>
         </div>
     </div>
+
+    <!-- Research Section -->
+    <div class="container mt-5" id="research">
+        <h2>Research</h2>
+        <p>Details about research projects...</p>
+    </div>
+
+    <!-- Teaching Section -->
+    <div class="container mt-5" id="teaching">
+        <h2>Teaching</h2>
+        <p>Details about teaching experience...</p>
+    </div>
+
+    <!-- Upload CV Section -->
+    <div class="container upload-section">
+        <h2>Upload CV</h2>
+        <form id="cvUploadForm">
+            <input type="file" class="form-control" id="cvFile" accept=".pdf">
+            <button type="submit" class="btn btn-primary mt-2">Upload CV</button>
+        </form>
+        <p id="uploadStatus" class="mt-2 text-success"></p>
+    </div>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        document.getElementById("cvUploadForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            let fileInput = document.getElementById("cvFile");
+            if (fileInput.files.length === 0) {
+                document.getElementById("uploadStatus").innerText = "Please select a file!";
+                return;
+            }
+
+            let formData = new FormData();
+            formData.append("file", fileInput.files[0]);
+
+            fetch("http://127.0.0.1:5000/upload", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("uploadStatus").innerText = data.message;
+            })
+            .catch(error => {
+                document.getElementById("uploadStatus").innerText = "Upload failed!";
+            });
+        });
+    </script>
+
 </body>
 </html>
 
