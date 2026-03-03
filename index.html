@@ -24,10 +24,38 @@
             margin-bottom: 20px;
         }
         .profile-img {
-            width: 150px;
-            height: 150px;
+            width: 170px;
+            height: 170px;
             border-radius: 50%;
             object-fit: cover;
+            object-position: center 25%;
+            display: block;
+            margin: 0 auto 18px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        .profile-name {
+            margin-bottom: 12px;
+            font-size: 2rem;
+            line-height: 1.2;
+        }
+        .profile-links li {
+            margin-bottom: 6px;
+            font-size: 1.1rem;
+        }
+        .profile-links a {
+            text-decoration: none;
+        }
+        .location-text {
+            color: #6c757d;
+        }
+        @media (max-width: 768px) {
+            .profile-img {
+                width: 150px;
+                height: 150px;
+            }
+            .profile-name {
+                font-size: 1.8rem;
+            }
         }
     </style>
 </head>
@@ -50,20 +78,21 @@
     </nav>
 
     <div class="container" id="home">
-        <div class="row">
-            <div class="col-md-3 text-center">
+        <div class="row align-items-start">
+            <div class="col-md-3 text-center mb-4">
                 <img src="54499748412_9ff09117e1_o.jpg" class="profile-img" alt="Profile Picture">
                 
-                <h2>Zirui Song</h2>
-                <ul class="list-unstyled">
-                    <li><a href="#">Perth, WA</a></li>
+                <h2 class="profile-name">Zirui Song</h2>
+                <ul class="list-unstyled profile-links">
+                    <li class="location-text">Perth, WA</li>
                     <li><a href="mailto:zirui.song@research.uwa.edu.au">Email</a></li>
                     <li><a href="https://github.com/zrsong" target="_blank">GitHub</a></li>
+                    <li><a href="https://scholar.google.com.au/citations?user=sDCeXk4AAAAJ&hl=en" target="_blank">Google Scholar</a></li>
                 </ul>
             </div>
             <div class="col-md-9">
-                <h1>Welcome to my personal website!</h1>
-                <p>Hello! My name is Zirui Song. I am a PhD student at UWA Business School.</p>
+                <h1>Welcome</h1>
+                <p>Zirui Song is a PhD student at UWA Business School and an academic tutor at the School. His research lies at the intersection of accounting, finance, and economics, with a strong focus on how emerging technologies influence investor behaviour and the information environment. He has published in <em>Accounting and Finance</em> and <em>Australian Journal of Management</em>, and serves as an ad hoc reviewer for the <em>International Journal of Accounting Information Systems</em>.</p>
             </div>
         </div>
     </div>
